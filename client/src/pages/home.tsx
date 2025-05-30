@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import ParticleBackground from "@/components/particle-background";
 import DonationCard from "@/components/donation-card";
 import PurchaseModal from "@/components/purchase-modal";
 import MinecraftIcon from "@/components/minecraft-icon";
 import ScrollReveal from "@/components/scroll-reveal";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { donationPackages, type DonationPackage } from "@/lib/donation-packages";
-import { Copy, Check, Play, ExternalLink } from "lucide-react";
+import { Copy, Check, ExternalLink, Info } from "lucide-react";
 import { FaDiscord, FaTelegram } from "react-icons/fa";
+import { useToast } from "@/hooks/use-toast";
+import beverImage from "@assets/image_1748633108339.png";
 
 export default function Home() {
   const [selectedPackage, setSelectedPackage] = useState<DonationPackage | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { copyToClipboard, hasCopied } = useCopyToClipboard();
+  const { toast } = useToast();
 
   const handleCopyIP = async () => {
     await copyToClipboard("bevercraft.ru:25565");
@@ -27,6 +29,18 @@ export default function Home() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedPackage(null);
+  };
+
+  const handleTelegramClick = () => {
+    toast({
+      title: "Telegram канал",
+      description: "Telegram канал ещё не готов. Попробуйте позже!",
+      variant: "default",
+    });
+  };
+
+  const handleDiscordClick = () => {
+    window.open("https://discord.gg/MgntdU3F", "_blank");
   };
 
   useEffect(() => {
@@ -47,8 +61,18 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen space-dark text-white overflow-x-hidden">
-      <ParticleBackground />
+    <div className="min-h-screen space-dark text-white overflow-x-hidden relative">
+      {/* Background pattern */}
+      <div className="fixed inset-0 opacity-5 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/10 to-neon-purple/10"></div>
+        <div className="absolute top-0 left-0 w-full h-full"
+             style={{
+               backgroundImage: `radial-gradient(circle at 25% 25%, hsl(var(--cyber-blue)) 0.5px, transparent 0.5px),
+                                radial-gradient(circle at 75% 75%, hsl(var(--neon-purple)) 0.5px, transparent 0.5px)`,
+               backgroundSize: '50px 50px'
+             }}>
+        </div>
+      </div>
       
       {/* Header */}
       <header className="fixed top-0 w-full z-50 glass-morphism">
@@ -98,41 +122,46 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 min-h-screen flex items-center relative overflow-hidden">
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <ScrollReveal>
-            <motion.h2 
-              className="text-6xl md:text-8xl font-orbitron font-black mb-6 glow-text cyber-blue animate-float"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              BEVERCRAFT
-            </motion.h2>
-            <motion.p 
-              className="text-xl md:text-2xl cyber-gray mb-8 max-w-3xl mx-auto font-rajdhani"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Уникальный Minecraft сервер с кастомными предметами и эпическими боссами. 
-              Погрузитесь в мир невероятных приключений и получите эксклюзивные привилегии!
-            </motion.p>
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <button className="px-8 py-4 bg-gradient-to-r from-cyber-blue to-cyber-blue-dark rounded-lg font-rajdhani font-semibold text-lg neon-border hover:scale-105 transition-all flex items-center gap-3">
-                <Play className="w-5 h-5" />
-                Начать играть
-              </button>
-              <button className="px-8 py-4 bg-gradient-to-r from-neon-purple to-neon-purple-light rounded-lg font-rajdhani font-semibold text-lg neon-border hover:scale-105 transition-all flex items-center gap-3">
-                <FaDiscord className="w-5 h-5" />
-                Discord сервер
-              </button>
-            </motion.div>
-          </ScrollReveal>
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <ScrollReveal>
+                <motion.h2 
+                  className="text-5xl md:text-7xl font-orbitron font-black mb-6 glow-text cyber-blue animate-float"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                >
+                  BEVERCRAFT
+                </motion.h2>
+                <motion.p 
+                  className="text-xl md:text-2xl cyber-gray mb-8 font-rajdhani"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  Уникальный Minecraft сервер с кастомными предметами и эпическими боссами. 
+                  Погрузитесь в мир невероятных приключений и получите эксклюзивные привилегии!
+                </motion.p>
+              </ScrollReveal>
+            </div>
+            
+            <div className="flex justify-center lg:justify-end">
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <img 
+                  src={beverImage} 
+                  alt="BeverCraft Donation" 
+                  className="w-80 h-60 object-cover rounded-xl neon-border shadow-2xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-cyber-blue/20 to-transparent rounded-xl"></div>
+              </motion.div>
+            </div>
+          </div>
         </div>
         
         {/* Geometric shapes */}
@@ -202,24 +231,24 @@ export default function Home() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <motion.a 
-                href="#" 
+              <motion.button 
+                onClick={handleDiscordClick}
                 className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg font-rajdhani font-semibold text-lg neon-border hover:scale-105 transition-all flex items-center gap-3"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FaDiscord className="w-5 h-5" />
                 Присоединиться к Discord
-              </motion.a>
-              <motion.a 
-                href="#" 
+              </motion.button>
+              <motion.button 
+                onClick={handleTelegramClick}
                 className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg font-rajdhani font-semibold text-lg neon-border hover:scale-105 transition-all flex items-center gap-3"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FaTelegram className="w-5 h-5" />
                 Telegram канал
-              </motion.a>
+              </motion.button>
             </div>
           </ScrollReveal>
         </div>

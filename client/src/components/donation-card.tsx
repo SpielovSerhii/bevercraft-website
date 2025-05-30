@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ShoppingCart } from "lucide-react";
-import MinecraftIcon from "./minecraft-icon";
+import DonationIcon from "./donation-icons";
 import { DonationPackage } from "@/lib/donation-packages";
 
 interface DonationCardProps {
@@ -52,9 +52,9 @@ export default function DonationCard({ package: pkg, onPurchase }: DonationCardP
     >
       <div className="text-center mb-6">
         <div className="w-16 h-16 mx-auto mb-4">
-          <MinecraftIcon 
-            type={pkg.iconType} 
-            className="w-full h-full minecraft-icon" 
+          <DonationIcon 
+            type={pkg.id as 'bever' | 'anzara' | 'seraphim' | 'river'} 
+            className="w-full h-full" 
           />
         </div>
         <h4 className={`text-2xl font-orbitron font-bold ${getColorClass()} mb-2`}>

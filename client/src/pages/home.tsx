@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import ParticleBackground from "@/components/particle-background";
 import DonationCard from "@/components/donation-card";
 import PurchaseModal from "@/components/purchase-modal";
-import MinecraftIcon from "@/components/minecraft-icon";
+import SiteLogo from "@/components/site-logo";
 import ScrollReveal from "@/components/scroll-reveal";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { donationPackages, type DonationPackage } from "@/lib/donation-packages";
 import { Copy, Check, ExternalLink, Info } from "lucide-react";
 import { FaDiscord, FaTelegram } from "react-icons/fa";
 import { useToast } from "@/hooks/use-toast";
-import beverImage from "@assets/image_1748633108339.png";
 
 export default function Home() {
   const [selectedPackage, setSelectedPackage] = useState<DonationPackage | null>(null);
@@ -62,17 +62,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen space-dark text-white overflow-x-hidden relative">
-      {/* Background pattern */}
-      <div className="fixed inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/10 to-neon-purple/10"></div>
-        <div className="absolute top-0 left-0 w-full h-full"
-             style={{
-               backgroundImage: `radial-gradient(circle at 25% 25%, hsl(var(--cyber-blue)) 0.5px, transparent 0.5px),
-                                radial-gradient(circle at 75% 75%, hsl(var(--neon-purple)) 0.5px, transparent 0.5px)`,
-               backgroundSize: '50px 50px'
-             }}>
-        </div>
-      </div>
+      <ParticleBackground />
       
       {/* Header */}
       <header className="fixed top-0 w-full z-50 glass-morphism">
@@ -83,10 +73,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <MinecraftIcon 
-              type="gold" 
-              className="w-12 h-12 minecraft-icon" 
-            />
+            <SiteLogo className="w-12 h-12" />
             <h1 className="text-2xl font-orbitron font-bold cyber-blue glow-text">
               BeverCraft
             </h1>
@@ -122,46 +109,26 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 min-h-screen flex items-center relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left">
-              <ScrollReveal>
-                <motion.h2 
-                  className="text-5xl md:text-7xl font-orbitron font-black mb-6 glow-text cyber-blue animate-float"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  BEVERCRAFT
-                </motion.h2>
-                <motion.p 
-                  className="text-xl md:text-2xl cyber-gray mb-8 font-rajdhani"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  Уникальный Minecraft сервер с кастомными предметами и эпическими боссами. 
-                  Погрузитесь в мир невероятных приключений и получите эксклюзивные привилегии!
-                </motion.p>
-              </ScrollReveal>
-            </div>
-            
-            <div className="flex justify-center lg:justify-end">
-              <motion.div
-                className="relative"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <img 
-                  src={beverImage} 
-                  alt="BeverCraft Donation" 
-                  className="w-80 h-60 object-cover rounded-xl neon-border shadow-2xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-cyber-blue/20 to-transparent rounded-xl"></div>
-              </motion.div>
-            </div>
-          </div>
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <ScrollReveal>
+            <motion.h2 
+              className="text-6xl md:text-8xl font-orbitron font-black mb-6 glow-text cyber-blue animate-float"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              BEVERCRAFT
+            </motion.h2>
+            <motion.p 
+              className="text-xl md:text-2xl cyber-gray mb-8 max-w-3xl mx-auto font-rajdhani"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Уникальный Minecraft сервер с кастомными предметами и эпическими боссами. 
+              Погрузитесь в мир невероятных приключений и получите эксклюзивные привилегии!
+            </motion.p>
+          </ScrollReveal>
         </div>
         
         {/* Geometric shapes */}

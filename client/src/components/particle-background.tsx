@@ -29,17 +29,24 @@ export default function ParticleBackground() {
 
     const createParticles = () => {
       const particles: Particle[] = [];
-      const particleCount = 50;
+      const particleCount = 80;
+      const colors = [
+        'rgba(0, 245, 255, 0.8)',    // cyber blue
+        'rgba(139, 92, 246, 0.7)',   // purple
+        'rgba(16, 185, 129, 0.6)',   // green
+        'rgba(255, 215, 0, 0.5)',    // gold
+        'rgba(59, 130, 246, 0.7)'    // blue
+      ];
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.5 + 0.2,
-          color: `rgba(0, 245, 255, ${Math.random() * 0.5 + 0.2})`
+          vx: (Math.random() - 0.5) * 1.2,
+          vy: (Math.random() - 0.5) * 1.2,
+          size: Math.random() * 3 + 1,
+          opacity: Math.random() * 0.8 + 0.3,
+          color: colors[Math.floor(Math.random() * colors.length)]
         });
       }
 
@@ -70,12 +77,12 @@ export default function ParticleBackground() {
         const dy = particle.y - otherParticle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 100) {
+        if (distance < 120) {
           ctx.beginPath();
           ctx.moveTo(particle.x, particle.y);
           ctx.lineTo(otherParticle.x, otherParticle.y);
-          ctx.strokeStyle = `rgba(0, 245, 255, ${0.1 * (1 - distance / 100)})`;
-          ctx.lineWidth = 0.5;
+          ctx.strokeStyle = `rgba(0, 245, 255, ${0.3 * (1 - distance / 120)})`;
+          ctx.lineWidth = 1;
           ctx.stroke();
         }
       });

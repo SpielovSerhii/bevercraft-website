@@ -62,6 +62,21 @@ export default function Home() {
 
   return (
     <div className="min-h-screen space-dark text-white overflow-x-hidden relative">
+      {/* Enhanced Background */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-cyan-900/20"></div>
+        <div className="absolute top-0 left-0 w-full h-full opacity-30"
+             style={{
+               backgroundImage: `
+                 radial-gradient(circle at 20% 20%, rgba(0, 245, 255, 0.3) 0%, transparent 50%),
+                 radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                 radial-gradient(circle at 40% 60%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
+                 radial-gradient(circle at 70% 30%, rgba(255, 215, 0, 0.2) 0%, transparent 50%)
+               `
+             }}>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-gray-900/30"></div>
+      </div>
       <ParticleBackground />
       
       {/* Header */}

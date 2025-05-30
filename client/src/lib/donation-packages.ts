@@ -15,7 +15,7 @@ export const donationPackages: DonationPackage[] = [
   {
     id: 'bever',
     name: 'BEVER',
-    description: 'Вечный донат с основными привилегиями для комфортной игры',
+    description: 'Премиальный пакет с максимальными привилегиями',
     iconType: 'gold',
     pricing: [
       { period: 'Навсегда', price: '1600 руб' },
@@ -26,7 +26,7 @@ export const donationPackages: DonationPackage[] = [
   {
     id: 'anzara',
     name: 'ANZARA',
-    description: 'Расширенные возможности и уникальные предметы',
+    description: 'Продвинутые возможности и уникальные предметы',
     iconType: 'purple',
     pricing: [
       { period: 'Навсегда', price: '1250 руб' },
@@ -37,7 +37,7 @@ export const donationPackages: DonationPackage[] = [
   {
     id: 'seraphim',
     name: 'SERAPHIM',
-    description: 'Премиальные привилегии для истинных ценителей',
+    description: 'Расширенные привилегии для комфортной игры',
     iconType: 'blue',
     pricing: [
       { period: 'Навсегда', price: '1000 руб' },
@@ -48,7 +48,7 @@ export const donationPackages: DonationPackage[] = [
   {
     id: 'river',
     name: 'RIVER',
-    description: 'Начальный пакет для новых игроков',
+    description: 'Базовый пакет для начинающих игроков',
     iconType: 'green',
     pricing: [
       { period: 'Навсегда', price: '600 руб' },

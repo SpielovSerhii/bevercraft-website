@@ -24,6 +24,12 @@ export default function PurchaseModal({ package: pkg, isOpen, onClose }: Purchas
         return 'cyber-blue';
       case 'river':
         return 'electric-green';
+      case 'ghost':
+        return 'neon-purple';
+      case 'abyss':
+        return 'cyber-blue';
+      case 'snape':
+        return 'electric-green';
       default:
         return 'cyber-blue';
     }
@@ -38,6 +44,12 @@ export default function PurchaseModal({ package: pkg, isOpen, onClose }: Purchas
       case 'seraphim':
         return 'from-cyber-blue to-cyber-blue-dark';
       case 'river':
+        return 'from-electric-green to-electric-green-dark';
+      case 'ghost':
+        return 'from-neon-purple to-neon-purple-light';
+      case 'abyss':
+        return 'from-cyber-blue to-cyber-blue-dark';
+      case 'snape':
         return 'from-electric-green to-electric-green-dark';
       default:
         return 'from-cyber-blue to-cyber-blue-dark';

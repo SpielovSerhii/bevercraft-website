@@ -19,6 +19,12 @@ export default function DonationCard({ package: pkg, onPurchase }: DonationCardP
         return 'from-cyber-blue to-cyber-blue-dark';
       case 'river':
         return 'from-electric-green to-electric-green-dark';
+      case 'ghost':
+        return 'from-neon-purple to-neon-purple-light';
+      case 'abyss':
+        return 'from-cyber-blue to-cyber-blue-dark';
+      case 'snape':
+        return 'from-electric-green to-electric-green-dark';
       default:
         return 'from-cyber-blue to-cyber-blue-dark';
     }
@@ -33,6 +39,12 @@ export default function DonationCard({ package: pkg, onPurchase }: DonationCardP
       case 'seraphim':
         return 'cyber-blue';
       case 'river':
+        return 'electric-green';
+      case 'ghost':
+        return 'neon-purple';
+      case 'abyss':
+        return 'cyber-blue';
+      case 'snape':
         return 'electric-green';
       default:
         return 'cyber-blue';
@@ -53,7 +65,7 @@ export default function DonationCard({ package: pkg, onPurchase }: DonationCardP
       <div className="text-center mb-6">
         <div className="w-16 h-16 mx-auto mb-4">
           <DonationIcon 
-            type={pkg.id as 'bever' | 'anzara' | 'seraphim' | 'river'} 
+            type={pkg.id as 'bever' | 'anzara' | 'seraphim' | 'river' | 'ghost' | 'abyss' | 'snape'} 
             className="w-full h-full" 
           />
         </div>
